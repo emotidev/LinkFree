@@ -14,7 +14,7 @@ import {
 } from "react-icons/md";
 import { FaMedal } from "react-icons/fa";
 
-import singleUser from "../config/user.json";
+import singleUser from "../config/user";
 
 export async function getServerSideProps(context) {
   if (singleUser.username) {

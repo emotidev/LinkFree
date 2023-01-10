@@ -6,7 +6,7 @@ import { FaRegComments } from "react-icons/fa";
 
 import SingleLayout from "../components/layouts/SingleLayout";
 import MultiLayout from "../components/layouts/MultiLayout";
-import singleUser from "../config/user.json";
+import singleUser from "../config/user";
 import UserProfile from "../components/user/UserProfile";
 import UserTabs from "../components/user/UserTabs";
 import UserLinks from "../components/user/UserLinks";
