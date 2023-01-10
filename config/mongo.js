@@ -2,8 +2,11 @@ import mongoose from "mongoose";
 import * as fs from "fs";
 
 let hasConnection = false;
+
+const mongoConnectionString = process.env.LINKFREE_MONGO_CONNECTION_STRING ?? process.env.MONGODB_URI
+
 const connectMongo = async () => {
-  if (!process.env.LINKFREE_MONGO_CONNECTION_STRING) {
+  if (!mongoConnectionString) {
     throw new Error(
       "Please define the LINKFREE_MONGO_CONNECTION_STRING environment variable (if local add to .env file)"
     );
@@ -19,7 +22,7 @@ const connectMongo = async () => {
       fs.writeFileSync("cert.pem", process.env.CA_CERT);
     }
 
-    await mongoose.connect(process.env.LINKFREE_MONGO_CONNECTION_STRING);
+    await mongoose.connect(mongoConnectionString);
     hasConnection = true;
     console.log("DB connected");
   } catch (err) {
