@@ -15,6 +15,7 @@ import {
 import { FaMedal } from "react-icons/fa";
 
 import singleUser from "../config/user";
+import { apiUrl } from "../config/api";
 
 export async function getServerSideProps(context) {
   if (singleUser.username) {
@@ -29,7 +30,7 @@ export async function getServerSideProps(context) {
   let total = {};
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/statistics/totals`
+      `${apiUrl}/statistics/totals`
     );
     total = await res.json();
   } catch (e) {
@@ -39,7 +40,7 @@ export async function getServerSideProps(context) {
   let today = {};
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/statistics/today`
+      `${apiUrl}/statistics/today`
     );
     today = await res.json();
   } catch (e) {

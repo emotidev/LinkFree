@@ -14,6 +14,7 @@ import UserMilestones from "../components/user/UserMilestones";
 import UserTestimonials from "../components/user/UserTestimonials";
 import UserEvents from "../components/user/UserEvents";
 import Page from "../components/Page";
+import { apiUrl } from "../config/api";
 
 export async function getServerSideProps(context) {
   let data = {};
@@ -21,7 +22,7 @@ export async function getServerSideProps(context) {
 
   try {
     const resUser = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${context.query.username}`
+      `${apiUrl}/users/${context.query.username}`
     );
     data = await resUser.json();
   } catch (e) {
@@ -39,7 +40,7 @@ export async function getServerSideProps(context) {
 
   try {
     const resUsers = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
+      `${apiUrl}/users`
     );
     users = (await resUsers.json()).map((user) => user.username);
   } catch (e) {
@@ -47,7 +48,7 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { users, data, BASE_URL: process.env.NEXT_PUBLIC_BASE_URL },
+    props: { users, data, BASE_URL: apiUrl },
   };
 }
 

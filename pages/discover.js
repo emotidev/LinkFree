@@ -3,6 +3,7 @@ import UserCard from "../components/user/UserCard";
 import Page from "../components/Page";
 import { useState } from "react";
 import { TbRefresh } from "react-icons/tb";
+import { apiUrl } from "../config/api";
 
 export async function getServerSideProps(context) {
   let data = {
@@ -12,7 +13,7 @@ export async function getServerSideProps(context) {
   };
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/discover/popular`
+      `${apiUrl}/discover/popular`
     );
     data.popular = await res.json();
   } catch (e) {
@@ -21,7 +22,7 @@ export async function getServerSideProps(context) {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/discover/random`
+      `${apiUrl}/discover/random`
     );
     data.random = await res.json();
   } catch (e) {
@@ -30,7 +31,7 @@ export async function getServerSideProps(context) {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/discover/trending`
+      `${apiUrl}/discover/trending`
     );
     data.trending = await res.json();
   } catch (e) {
@@ -38,7 +39,7 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: { data, BASE_URL: process.env.NEXT_PUBLIC_BASE_URL },
+    props: { data, BASE_URL: apiUrl },
   };
 }
 

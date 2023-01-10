@@ -37,6 +37,9 @@ const nextConfig = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  experimental: {
+    runtime: process.env.VERCEL ? "experimental-edge" : undefined,
+  },
 };
 
 const withMDX = createMDX({
